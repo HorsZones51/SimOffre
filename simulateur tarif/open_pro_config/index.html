@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OPEN PRO - Paramétrage et Simulation</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header>
+    <h1>OPEN PRO - Configurateur d'Offres</h1>
+    <nav>
+      <ul>
+        <li><a href="#" data-section="section-base">Paramètres de base</a></li>
+        <li><a href="#" data-section="section-composition">Composer l'offre</a></li>
+        <li><a href="#" data-section="section-resultats">Résultats</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Section Paramètres de base -->
+  <section id="section-base" class="hidden">
+    <h2>Paramètres de base</h2>
+    <div class="form-container">
+      <!-- Formulaire Fixe -->
+      <h3>Offre Fixe (ADSL/FIBRE)</h3>
+      <form id="form-fixe">
+        <label>Prix Livebox ADSL (€/mois): <input type="number" step="0.01" id="adsl-prix" required></label>
+        <label>Prix Livebox FIBRE (€/mois): <input type="number" step="0.01" id="fibre-prix" required></label>
+        <label>Location Livebox (€/mois): <input type="number" step="0.01" id="location-box" required></label>
+        <button type="submit" class="btn">Enregistrer</button>
+      </form>
+
+      <!-- Formulaire Mobiles -->
+      <h3>Formules Mobiles</h3>
+      <form id="form-mobiles">
+        <label>Type de formule mobile :
+          <select id="mobile-nom">
+            <!-- initiale voix supprimée -->
+            <option value="initiale">initiale (12 ou 24 mois)</option>
+            <option value="essentiel">essentiel (12 ou 24 mois)</option>
+            <option value="équilibre">équilibre (12 ou 24 mois)</option>
+            <option value="intense">intense (12 ou 24 mois)</option>
+          </select>
+        </label>
+        <label>Engagement (mois) :
+          <select id="mobile-engagement">
+            <option value="12">12</option>
+            <option value="24">24</option>
+          </select>
+        </label>
+        <label>Prix (€/mois) : <input type="number" step="0.01" id="mobile-prix" required></label>
+        <button type="submit" class="btn">Ajouter/Mettre à jour</button>
+      </form>
+      <div id="liste-mobiles"></div>
+
+      <!-- Formulaire Remises -->
+      <h3>Remises</h3>
+      <form id="form-remises">
+        <label>Remise ADSL vers FIBRE (€/mois sur 12 mois) :
+          <input type="number" step="0.01" id="remise-adsl-fibre" required>
+        </label>
+        <label>Remise Jeune créateur (% sur 12 mois) :
+          <input type="number" step="0.01" id="remise-jeune-createur" required>
+        </label>
+        <button type="submit" class="btn">Enregistrer</button>
+      </form>
+
+      <!-- Formulaire Marges de manoeuvre -->
+      <h3>Marges de manoeuvre</h3>
+      <form id="form-marges">
+        <label>Marge 1 (€/mois sur 12 mois) :
+          <input type="number" step="0.01" id="marge-1">
+        </label>
+        <label>Marge 2 (€/mois sur 12 mois) :
+          <input type="number" step="0.01" id="marge-2">
+        </label>
+        <label>Marge 3 (€/mois sur 12 mois) :
+          <input type="number" step="0.01" id="marge-3">
+        </label>
+        <button type="submit" class="btn">Enregistrer</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Section Composition -->
+  <section id="section-composition" class="hidden">
+    <h2>Composer l'offre</h2>
+    <div class="form-container">
+      <form id="form-composition">
+        <label>Type d'offre fixe :
+          <select id="choix-fixe">
+            <option value="adsl">Livebox ADSL</option>
+            <option value="fibre">Livebox FIBRE</option>
+          </select>
+        </label>
+
+        <h3>Mobiles associés (indiquer la quantité désirée)</h3>
+        <div id="mobiles-disponibles"></div>
+        
+        <h3>Remises</h3>
+        <label><input type="checkbox" id="choix-adsl-fibre"> ADSL vers FIBRE</label><br/>
+        <label><input type="checkbox" id="choix-jeune-createur"> Jeune créateur</label>
+
+        <h3>Marge de manoeuvre</h3>
+        <label>Choix Marge (0 pour aucune): 
+          <select id="choix-marge">
+            <option value="0">Aucune</option>
+            <option value="1">Marge 1</option>
+            <option value="2">Marge 2</option>
+            <option value="3">Marge 3</option>
+          </select>
+        </label>
+
+        <button type="submit" class="btn">Calculer</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Section Résultats -->
+  <section id="section-resultats" class="hidden">
+    <h2>Résultats</h2>
+    <div id="resultats-contenu"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 - Configuration OPEN PRO</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
